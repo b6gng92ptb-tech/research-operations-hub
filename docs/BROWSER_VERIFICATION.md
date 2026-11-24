@@ -1,22 +1,19 @@
-# Browser verification — 23 November 2026
+# Browser verification — 24 November 2026
 
-## Verified locally
+## Demo scope
 
-The **standalone HTML showcase** was exercised in headless Chromium via Playwright. The test verified the initial synthetic dataset, creation, requester submission, reviewer start-review and approval, metrics, and absence of JavaScript page errors. Screenshots are in `docs/evidence/` (desktop and mobile viewport). A reproducible smoke test is at `scripts/browser-smoke.py`.
+`showcase/index.html` is a standalone static page. The included smoke script exercises demo record creation, requester submission, reviewer approval, audit-event count, reset, and a mobile-sized viewport. It is separate from the Next.js application and makes no API, MongoDB, or OIDC calls.
 
-This is **not** proof of Next.js production build, MongoDB transactions, AWS Cognito authentication, CI execution on GitHub, or live deployment. Those remain unverified.
+## Verification status
 
-## Repeat
+The scripted browser smoke test could not be run in this execution environment: Chromium is installed, but its process is blocked by the environment's socket permissions. The public GitHub Pages URL also could not be verified because Pages is not enabled for this repository and the available GitHub Actions integration was denied permission to create the Pages site. No public demo URL is claimed.
+
+To run the smoke check on a machine where Chromium can launch:
 
 ```bash
 CHROMIUM_PATH=/usr/bin/chromium python scripts/browser-smoke.py
-npm install
-npm test
-npm run build
 ```
 
-For backend integration, configure a local MongoDB replica set, create indexes and use a real OIDC test identity; do not expose private tokens in public screenshots. `npm install` and `npm run build` require internet access to npm and were unavailable in the current execution environment.
+## Full-stack limits
 
-## Release policy
-
-The standalone showcase can be published as an explicitly labeled **browser-only demonstration**. The Next.js backend should be published as source/architecture evidence only until its build and integration tests have passed. No employer or CMCC data should be used.
+The Next.js application production build and automated unit/source checks are verified independently. No live MongoDB replica-set, real OIDC provider, complete login flow, or full-stack deployment was exercised.
