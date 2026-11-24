@@ -4,7 +4,9 @@ An independent portfolio prototype for research request intake, review workflows
 
 ## Try the browser-only demo
 
-Open [`showcase/index.html`](showcase/index.html) in a modern browser to try the interactive showcase. It runs entirely in the browser with synthetic in-memory data and a simulated role selector. It does not call the API, persist data, authenticate users, or connect to MongoDB or an OIDC provider. GitHub Pages is not enabled for this repository, so no public demo URL is available.
+[Launch the public interactive demo](https://b6gng92ptb-tech.github.io/research-operations-hub/showcase/index.html).
+
+The showcase runs entirely in the browser with synthetic in-memory data and a simulated role selector. It does not call the API, persist data, authenticate users, or connect to MongoDB or an OIDC provider. The public demo is a static showcase only; the separate full-stack application is not deployed.
 
 See [the walkthrough](docs/SHOWCASE_GUIDE.md).
 
