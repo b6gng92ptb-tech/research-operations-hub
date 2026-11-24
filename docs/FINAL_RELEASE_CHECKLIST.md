@@ -1,19 +1,17 @@
 # Release verification record — 24 November 2026
 
-## Verified for this source release
+## Verified
 
-- Installed dependencies from the npm registry and generated `package-lock.json`.
-- `npm ci --no-audit --no-fund` completed successfully.
+- Installed dependencies from npm and generated the committed `package-lock.json`.
+- `npm ci --no-audit --no-fund` completed successfully locally and in the successful GitHub Actions run.
 - `npm run check:source` passed (20 JavaScript, JSX, and MJS files scanned).
-- `npm test` passed all 38 tests (0 failed).
-- `npm run build` completed successfully with Next.js 15.5.29; the application page prerendered and API routes compiled.
-- The showcase is a separate static browser demo and uses synthetic data only.
+- `npm test` passed all 38 tests locally and in GitHub Actions (0 failed).
+- `npm run build` completed successfully locally and in GitHub Actions with Next.js 15.5.29. The application page prerendered and API routes compiled.
 
-## Scope not verified by these checks
+## Not verified or unavailable
 
-- A real MongoDB replica-set deployment, data persistence, transaction behavior under concurrent load, or operational recovery.
-- A real OIDC provider, interactive authorization-code/PKCE login, token issuance, rotation, or production identity lifecycle.
-- Production deployment of the full-stack Next.js application.
-- The standalone showcase's browser behavior, responsive layout, GitHub Pages publication, and public URL must be checked against the actual published deployment before describing them as verified.
+- The standalone browser smoke script could not launch Chromium in this execution environment because the environment denied the browser process's socket operation.
+- GitHub Pages is not enabled. The GitHub Actions integration could not create a Pages site because its token lacks the required repository administration permission. The expected Pages URL currently returns 404, so no public demo URL is provided.
+- No real MongoDB replica-set integration, OIDC provider, interactive authorization-code/PKCE flow, or full-stack production deployment was tested.
 
-Present this project as an independent portfolio prototype. Do not describe it as commissioned by CMCC, a CMCC system, or a production service.
+Present this project as an independent portfolio prototype. It was not commissioned by CMCC Foundation and is not a CMCC system or production service.
