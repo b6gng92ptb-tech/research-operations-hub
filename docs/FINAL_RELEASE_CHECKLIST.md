@@ -7,6 +7,7 @@
 - `npm run check:source` passed (20 JavaScript, JSX, and MJS files scanned).
 - `npm test` passed all 38 tests locally and in GitHub Actions (0 failed).
 - `npm run build` completed successfully locally and in GitHub Actions with Next.js 15.5.29. The application page prerendered and API routes compiled.
+- `npm audit --omit=dev --audit-level=high` found no vulnerabilities after overriding the vulnerable PostCSS transitive version with 8.5.33.
 
 ## Not verified or unavailable
 
