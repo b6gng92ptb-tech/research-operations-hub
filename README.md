@@ -4,9 +4,9 @@ An independent portfolio prototype for research request intake, review workflows
 
 ## Try the browser-only demo
 
-**[Open the interactive showcase](https://b6gng92ptb-tech.github.io/research-operations-hub/)** (published from `showcase/`). It runs entirely in the browser with synthetic in-memory data and a simulated role selector. It does not call the API, persist data, authenticate users, or connect to MongoDB or an OIDC provider.
+Open [`showcase/index.html`](showcase/index.html) in a modern browser to try the interactive showcase. It runs entirely in the browser with synthetic in-memory data and a simulated role selector. It does not call the API, persist data, authenticate users, or connect to MongoDB or an OIDC provider. GitHub Pages is not enabled for this repository, so no public demo URL is available.
 
-To run it locally, open [`showcase/index.html`](showcase/index.html) directly in a modern browser. See [the walkthrough](docs/SHOWCASE_GUIDE.md).
+See [the walkthrough](docs/SHOWCASE_GUIDE.md).
 
 ## Full-stack source
 
@@ -39,4 +39,4 @@ Open `http://localhost:3000`. `npm ci` uses the committed `package-lock.json`. T
 - [Browser demo verification](docs/BROWSER_VERIFICATION.md)
 - [Transaction design notes](docs/TRANSACTIONS_IT.md)
 
-GitHub Actions runs the source checks, Node test suite, and production build on pushes and pull requests. A separate workflow publishes only the static showcase to GitHub Pages. The Pages demo is not a deployment of the full-stack application.
+GitHub Actions runs the source checks, Node test suite, and production build on pushes and pull requests. The showcase source is included in this repository; it is not a deployment of the full-stack application.
