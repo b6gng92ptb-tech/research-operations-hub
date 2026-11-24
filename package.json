@@ -6,7 +6,10 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "test": "node --test tests/*.test.mjs"
+    "test": "node --test tests/*.test.mjs",
+    "check": "npm run check:source && npm test && npm run build",
+    "check:source": "node scripts/check-source.mjs",
+    "release:preflight": "node scripts/release-preflight.mjs"
   },
   "dependencies": {
     "next": "^15.5.0",

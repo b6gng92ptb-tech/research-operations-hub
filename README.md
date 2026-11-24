@@ -1,16 +1,42 @@
 # Research Operations Hub
 
-Independent portfolio prototype for research request workflows. Not affiliated with CMCC. No employer source code or real operational data.
+An independent portfolio prototype for research request intake, review workflows, and auditability. It is not commissioned by, affiliated with, or used by CMCC Foundation. All example data is fictional.
 
-## Current repository status
-Publication in progress: the workflow policy and its unit tests are available. The complete Next.js application and standalone showcase are not yet uploaded.
+## Try the browser-only demo
 
-## Run the published tests
-Requires Node.js 20 or newer.
+**[Open the interactive showcase](https://b6gng92ptb-tech.github.io/research-operations-hub/)** (published from `showcase/`). It runs entirely in the browser with synthetic in-memory data and a simulated role selector. It does not call the API, persist data, authenticate users, or connect to MongoDB or an OIDC provider.
+
+To run it locally, open [`showcase/index.html`](showcase/index.html) directly in a modern browser. See [the walkthrough](docs/SHOWCASE_GUIDE.md).
+
+## Full-stack source
+
+The separate Next.js application contains a React dashboard and REST route handlers for requests, audit history, metrics, health, and signed webhooks. It uses MongoDB persistence, Zod validation, and JOSE JWT verification. The source builds, but real MongoDB replica-set transactions and a real OIDC provider have not been integration-tested. There is no authorization-code/PKCE login flow.
+
+### Requirements
+
+- Node.js 22 (Node.js 20.9 or newer is supported)
+- npm 10 or newer
+- MongoDB replica set for live API operations
+- An OIDC provider for live authenticated API operations
+
+### Install and run
+
 ```bash
-node --test tests/workflow.test.mjs
+npm ci
+npm run check:source
+npm test
+npm run build
+npm run dev
 ```
 
-The workflow separates state transitions and role-based permissions from persistence and HTTP. Requesters submit their own drafts; reviewers review submitted requests; terminal states cannot be reopened.
+Open `http://localhost:3000`. `npm ci` uses the committed `package-lock.json`. To enable live API operations, copy `.env.example` to `.env.local` and configure the issuer, audience, JWKS URL, MongoDB URI, and webhook secret from your own test services. Never commit `.env.local` or real credentials. MongoDB transactions require a replica set; `docker-compose.yml` and `scripts/init-replica.sh` provide a local development setup.
 
-The complete local prototype uses Next.js, React, Node.js, MongoDB, Zod and JWT validation. Live database and identity-provider integration have not been verified. This is not production software.
+## Architecture and verification
+
+- [Architecture and known limitations](docs/ARCHITECTURE.md)
+- [Local deployment notes](docs/DEPLOYMENT.md)
+- [Release verification record](docs/FINAL_RELEASE_CHECKLIST.md)
+- [Browser demo verification](docs/BROWSER_VERIFICATION.md)
+- [Transaction design notes](docs/TRANSACTIONS_IT.md)
+
+GitHub Actions runs the source checks, Node test suite, and production build on pushes and pull requests. A separate workflow publishes only the static showcase to GitHub Pages. The Pages demo is not a deployment of the full-stack application.
