@@ -1,18 +1,18 @@
 # Release verification record — 24 November 2026
 
-## Verified
+## Verified in the current revision
 
-- Installed dependencies from npm and generated the committed `package-lock.json`.
-- `npm ci --no-audit --no-fund` completed successfully locally and in the successful GitHub Actions run.
-- `npm run check:source` passed (20 JavaScript, JSX, and MJS files scanned).
-- `npm test` passed all 38 tests locally and in GitHub Actions (0 failed).
-- `npm run build` completed successfully locally and in GitHub Actions with Next.js 15.5.29. The application page prerendered and API routes compiled.
-- `npm audit --omit=dev --audit-level=high` found no vulnerabilities after overriding the vulnerable PostCSS transitive version with 8.5.33.
+- `npm ci --no-audit --no-fund` installed from the committed lockfile.
+- `npm run check:source` passed (22 JavaScript, JSX and MJS files scanned).
+- `npm test` passed all 46 tests (0 failed), including form validation, unsaved-draft state and role-filtering policy tests.
+- `npm run build` completed successfully with Next.js 15.5.29; the page prerendered and all API routes compiled.
+- `npm audit --audit-level=high` reported 0 vulnerabilities. PostCSS is pinned through a compatible override at 8.5.33.
+- `npm run release:preflight` found the package manifest, lockfile, README and CI workflow.
 
 ## Not verified or unavailable
 
-- The standalone browser smoke script could not launch Chromium in this execution environment because the environment denied the browser process's socket operation.
-- GitHub Pages is not enabled. The GitHub Actions integration could not create a Pages site because its token lacks the required repository administration permission. The expected Pages URL currently returns 404, so no public demo URL is provided.
-- No real MongoDB replica-set integration, OIDC provider, interactive authorization-code/PKCE flow, or full-stack production deployment was tested.
+- Browser-based visual and interaction checks could not reach the local Next.js server from the isolated desktop browser. The Chromium process available to the Node test environment is also restricted by socket permissions.
+- GitHub Pages is not enabled. The available GitHub Actions token was denied permission to create a Pages site, so no public demo URL is claimed.
+- No live MongoDB replica-set transaction test, real OIDC provider, authorization-code/PKCE login, full-stack deployment, or AWS/ERP integration was exercised.
 
 Present this project as an independent portfolio prototype. It was not commissioned by CMCC Foundation and is not a CMCC system or production service.

@@ -10,7 +10,9 @@ See [the walkthrough](docs/SHOWCASE_GUIDE.md).
 
 ## Full-stack source
 
-The separate Next.js application contains a React dashboard and REST route handlers for requests, audit history, metrics, health, and signed webhooks. It uses MongoDB persistence, Zod validation, and JOSE JWT verification. The source builds, but real MongoDB replica-set transactions and a real OIDC provider have not been integration-tested. There is no authorization-code/PKCE login flow.
+The separate Next.js application contains a React dashboard and REST route handlers for requests, audit history, metrics, health, and signed webhooks. The request form shares its Zod schema with the API, reports field-level errors, and warns before navigating away with an unsaved draft. Request updates use optimistic version checks and transactional audit writes; requester visibility is enforced again by the API.
+
+The source builds, but real MongoDB replica-set transactions and a real OIDC provider have not been integration-tested. There is no authorization-code/PKCE login flow or production deployment. The standalone showcase is a separate browser-only demo and does not exercise this React app or its backend.
 
 ### Requirements
 
@@ -33,6 +35,7 @@ Open `http://localhost:3000`. `npm ci` uses the committed `package-lock.json`. T
 
 ## Architecture and verification
 
+- [Technical case study](docs/PORTFOLIO_CASE_STUDY.md)
 - [Architecture and known limitations](docs/ARCHITECTURE.md)
 - [Local deployment notes](docs/DEPLOYMENT.md)
 - [Release verification record](docs/FINAL_RELEASE_CHECKLIST.md)

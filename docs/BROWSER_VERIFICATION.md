@@ -1,14 +1,16 @@
 # Browser verification — 24 November 2026
 
-## Demo scope
+## Scope
 
-`showcase/index.html` is a standalone static page. The included smoke script exercises demo record creation, requester submission, reviewer approval, audit-event count, reset, and a mobile-sized viewport. It is separate from the Next.js application and makes no API, MongoDB, or OIDC calls.
+The standalone `showcase/index.html` exercises a simulated workflow in memory. `scripts/browser-smoke.py` covers creation, submission, reviewer approval, audit count, reset and a mobile-sized viewport. It is separate from the Next.js application and does not call its API, MongoDB or OIDC services.
 
-## Verification status
+## Current result
 
-The scripted browser smoke test could not be run in this execution environment: Chromium is installed, but its process is blocked by the environment's socket permissions. The public GitHub Pages URL also could not be verified because Pages is not enabled for this repository and the available GitHub Actions integration was denied permission to create the Pages site. No public demo URL is claimed.
+The current React interface and standalone smoke script were not visually verified in a browser. Chromium in the Node test environment could not launch because of a socket permission restriction, and the native desktop browser could not reach the Next.js development server running in the isolated execution environment. The Next.js production build and all automated Node checks passed.
 
-To run the smoke check on a machine where Chromium can launch:
+GitHub Pages is not enabled for this repository. The GitHub Actions integration could not create a Pages site with its available permissions, so the expected Pages address returns 404 and is not advertised as a demo.
+
+On a machine where Chromium can access the project and launch:
 
 ```bash
 CHROMIUM_PATH=/usr/bin/chromium python scripts/browser-smoke.py
@@ -16,4 +18,4 @@ CHROMIUM_PATH=/usr/bin/chromium python scripts/browser-smoke.py
 
 ## Full-stack limits
 
-The Next.js application production build and automated unit/source checks are verified independently. No live MongoDB replica-set, real OIDC provider, complete login flow, or full-stack deployment was exercised.
+No live MongoDB replica-set, real OIDC provider, complete login flow, or production deployment was exercised.
